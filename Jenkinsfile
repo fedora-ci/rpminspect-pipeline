@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('fedora-pipeline-library@candidate') _
+@Library('fedora-pipeline-library@downstream-fixes') _
 
 def pipelineMetadata = [
     pipelineName: 'rpminspect',
