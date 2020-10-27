@@ -148,3 +148,10 @@ prepare:
 
 execute:
     how: shell
+
+finish:
+    how: shell
+    script:
+        # Cleanup all downloaded rpms, currently finish runs in it's own directory, thus
+        # we need to move one directory up: https://github.com/psss/tmt/issues/423
+        - find $(dirname $PWD) -name *.rpm -delete
