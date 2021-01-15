@@ -119,7 +119,7 @@ discover:
       duration: 20m
     - name: politics
       test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $RELEASE_ID politics
-      duration: 20m
+      duration: 60m
 
 
 description: |
