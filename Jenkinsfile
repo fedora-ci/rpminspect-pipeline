@@ -7,6 +7,7 @@ retry (10) {
     }
 }
 
+
 def pipelineMetadata = [
     pipelineName: 'rpminspect',
     pipelineDescription: 'Run rpminspect on RPM builds',
@@ -47,7 +48,7 @@ pipeline {
 
     options {
         buildDiscarder(logRotator(daysToKeepStr: env.DEFAULT_DAYS_TO_KEEP_LOGS, artifactNumToKeepStr: env.DEFAULT_ARTIFACTS_TO_KEEP))
-        timeout(time: env.DEFAULT_PIPELINE_TIMEOUT_MINUTES, unit: 'MINUTES')
+        timeout(time: 10, unit: 'SECONDS')
         skipDefaultCheckout(true)
     }
 
@@ -70,6 +71,7 @@ pipeline {
                     artifactId = params.ARTIFACT_ID
                     setBuildNameFromArtifactId(artifactId: artifactId, profile: params.TEST_PROFILE)
 
+                    sleep(time: 30, unit: 'SECONDS')
                     checkout scm
                     config = loadConfig(profile: params.TEST_PROFILE)
 
