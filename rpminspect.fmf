@@ -1,219 +1,203 @@
-summary: TMT/FMF plan for running rpminspect.
+summary: tmt plan for rpminspect.
 
 discover:
     how: shell
     tests:
     - name: license
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG license
+      test: /usr/local/bin/rpminspect_zuul_runner.sh -r $REPO_URL -t license -e
       duration: 720m
     - name: emptyrpm
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG emptyrpm
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t emptyrpm
       duration: 2m
     - name: lostpayload
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG lostpayload
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t lostpayload
       duration: 2m
     - name: metadata
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG metadata
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t metadata
       duration: 2m
     - name: manpage
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG manpage
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t manpage
       duration: 2m
     - name: xml
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG xml
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t xml
       duration: 2m
     - name: elf
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG elf
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t elf
       duration: 2m
     - name: desktop
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG desktop
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t desktop
       duration: 2m
     - name: disttag
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG disttag
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t disttag
       duration: 2m
     - name: specname
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG specname
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t specname
       duration: 2m
     - name: modularity
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG modularity
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t modularity
       duration: 2m
     - name: javabytecode
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG javabytecode
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t javabytecode
       duration: 2m
     - name: changedfiles
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG changedfiles
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t changedfiles
       duration: 2m
     - name: movedfiles
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG movedfiles
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t movedfiles
       duration: 2m
     - name: removedfiles
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG removedfiles
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t removedfiles
       duration: 2m
     - name: addedfiles
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG addedfiles
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t addedfiles
       duration: 2m
     - name: upstream
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG upstream
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t upstream
       duration: 2m
     - name: ownership
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG ownership
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t ownership
       duration: 2m
     - name: shellsyntax
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG shellsyntax
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t shellsyntax
       duration: 2m
     - name: annocheck
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG annocheck
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t annocheck
       duration: 2m
     - name: dsodeps
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG dsodeps
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t dsodeps
       duration: 2m
     - name: filesize
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG filesize
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t filesize
       duration: 2m
     - name: permissions
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG permissions
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t permissions
       duration: 2m
     - name: capabilities
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG capabilities
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t capabilities
       duration: 2m
     - name: kmod
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG kmod
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t kmod
       duration: 2m
     - name: arch
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG arch
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t arch
       duration: 2m
     - name: subpackages
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG subpackages
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t subpackages
       duration: 2m
     - name: changelog
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG changelog
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t changelog
       duration: 2m
     - name: pathmigration
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG pathmigration
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t pathmigration
       duration: 2m
     - name: lto
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG lto
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t lto
       duration: 2m
     - name: symlinks
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG symlinks
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t symlinks
       duration: 2m
     - name: files
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG files
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t files
       duration: 2m
     - name: types
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG types
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t types
       duration: 2m
     - name: abidiff
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG abidiff
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t abidiff
       duration: 2m
     - name: kmidiff
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG kmidiff
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t kmidiff
       duration: 2m
     - name: config
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG config
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t config
       duration: 2m
     - name: doc
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG doc
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t doc
       duration: 2m
     - name: patches
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG patches
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t patches
       duration: 2m
     - name: virus
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG virus
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t virus
       duration: 2m
     - name: politics
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG politics
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t politics
       duration: 2m
     - name: badfuncs
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG badfuncs
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t badfuncs
       duration: 2m
     - name: runpath
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG runpath
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t runpath
       duration: 2m
     - name: unicode
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG unicode
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t unicode
       duration: 2m
     - name: rpmdeps
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG rpmdeps
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t rpmdeps
       duration: 2m
     - name: diagnostics
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG diagnostics
+      test: /usr/local/bin/rpminspect_zuul_runner.sh --cached -t diagnostics
       duration: 2m
 
 
 description: |
-    Runs rpminspect tests in Fedora CI — https://github.com/fedora-ci/rpminspect-pipeline.
+    Runs rpminspect tests in CentOS Stream 9 — https://github.com/fedora-ci/rpminspect-pipeline (branch: c9s)
 
 provision:
     how: container
-    # source: https://github.com/fedora-ci/rpminspect-image
-    image: quay.io/fedoraci/rpminspect:b50aaa7
+    # source: https://github.com/fedora-ci/rpminspect-image (Dockerfile.stream)
+    image: quay.io/fedoraci/rpminspect:stream-01a1a3a
 
 prepare:
     how: shell
     script: |
-        if [ -z "$TASK_ID" ]; then
-            echo "TASK_ID not specified"
-            exit 1
-        fi
-        if [ -z "$PREVIOUS_TAG" ]; then
-            echo "PREVIOUS_TAG not specified"
-            exit 1
-        fi
-        if [ -z "$DEFAULT_RELEASE_STRING" ]; then
-            echo "DEFAULT_RELEASE_STRING not specified"
-            exit 1
-        fi
-        if [ -z "$REPOSITORY_URL" ]; then
-            echo "REPOSITORY_URL not specified"
-            exit 1
-        fi
-        if [ -z "$GIT_COMMIT" ]; then
-            echo "GIT_COMMIT not specified"
+        if [ -z "$REPO_URL" ]; then
+            echo "REPO_URL not specified"
             exit 1
         fi
 
