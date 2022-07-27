@@ -191,7 +191,7 @@ description: |
 provision:
     how: container
     # source: https://github.com/fedora-ci/rpminspect-image (Dockerfile.stream)
-    image: quay.io/fedoraci/rpminspect:stream-a809f05
+    image: quay.io/fedoraci/rpminspect:stream
 
 prepare:
     how: shell
