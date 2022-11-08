@@ -3,187 +3,11 @@ summary: TMT/FMF plan for running rpminspect.
 discover:
     how: shell
     tests:
-    - name: license
+    - name: rpminspect
       framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG license
+      test: rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG
+      result: custom
       duration: 720m
-    - name: emptyrpm
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG emptyrpm
-      duration: 2m
-    - name: lostpayload
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG lostpayload
-      duration: 2m
-    - name: metadata
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG metadata
-      duration: 2m
-    - name: manpage
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG manpage
-      duration: 2m
-    - name: xml
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG xml
-      duration: 2m
-    - name: elf
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG elf
-      duration: 2m
-    - name: desktop
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG desktop
-      duration: 2m
-    - name: disttag
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG disttag
-      duration: 2m
-    - name: specname
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG specname
-      duration: 2m
-    - name: modularity
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG modularity
-      duration: 2m
-    - name: javabytecode
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG javabytecode
-      duration: 2m
-    - name: changedfiles
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG changedfiles
-      duration: 2m
-    - name: movedfiles
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG movedfiles
-      duration: 2m
-    - name: removedfiles
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG removedfiles
-      duration: 2m
-    - name: addedfiles
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG addedfiles
-      duration: 2m
-    - name: upstream
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG upstream
-      duration: 2m
-    - name: ownership
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG ownership
-      duration: 2m
-    - name: shellsyntax
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG shellsyntax
-      duration: 2m
-    - name: annocheck
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG annocheck
-      duration: 2m
-    - name: dsodeps
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG dsodeps
-      duration: 2m
-    - name: filesize
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG filesize
-      duration: 2m
-    - name: permissions
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG permissions
-      duration: 2m
-    - name: capabilities
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG capabilities
-      duration: 2m
-    - name: kmod
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG kmod
-      duration: 2m
-    - name: arch
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG arch
-      duration: 2m
-    - name: subpackages
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG subpackages
-      duration: 2m
-    - name: changelog
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG changelog
-      duration: 2m
-    - name: pathmigration
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG pathmigration
-      duration: 2m
-    - name: lto
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG lto
-      duration: 2m
-    - name: symlinks
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG symlinks
-      duration: 2m
-    - name: files
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG files
-      duration: 2m
-    - name: types
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG types
-      duration: 2m
-    - name: abidiff
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG abidiff
-      duration: 2m
-    - name: kmidiff
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG kmidiff
-      duration: 2m
-    - name: config
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG config
-      duration: 2m
-    - name: doc
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG doc
-      duration: 2m
-    - name: patches
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG patches
-      duration: 2m
-    - name: virus
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG virus
-      duration: 2m
-    - name: politics
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG politics
-      duration: 2m
-    - name: badfuncs
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG badfuncs
-      duration: 2m
-    - name: runpath
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG runpath
-      duration: 2m
-    - name: unicode
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG unicode
-      duration: 2m
-    - name: rpmdeps
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG rpmdeps
-      duration: 2m
-    - name: diagnostics
-      framework: shell
-      test: /usr/local/bin/rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG diagnostics
-      duration: 2m
-
 
 description: |
     Runs rpminspect tests in Fedora CI — https://github.com/fedora-ci/rpminspect-pipeline.
@@ -191,7 +15,7 @@ description: |
 provision:
     how: container
     # source: https://github.com/fedora-ci/rpminspect-image
-    image: quay.io/fedoraci/rpminspect:7535419
+    image: quay.io/fedoraci/rpminspect:5e29b5f
 
 prepare:
     how: shell
