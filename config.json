@@ -27,14 +27,14 @@
         "f37": {
             "previous_tag": "f37-updates",
             "default_release_string": "fc37",
-            "config_branch": "rawhide",
-            "profile_name": "rawhide"
+            "config_branch": "f37",
+            "profile_name": ""
         },
         "f38": {
             "previous_tag": "f38-updates",
             "default_release_string": "fc38",
-            "config_branch": "rawhide",
-            "profile_name": "rawhide"
+            "config_branch": "f38",
+            "profile_name": ""
         },
         "f39": {
             "previous_tag": "f39-updates",
