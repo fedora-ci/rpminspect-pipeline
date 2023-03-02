@@ -94,7 +94,7 @@ pipeline {
                                     TASK_ID: "${getIdFromArtifactId(artifactId: artifactId)}",
                                     DEFAULT_RELEASE_STRING: "${config.default_release_string}",
                                     REPOSITORY_URL: "${repoUrlAndRef.url}",
-                                    CONFIG_BRANCH: "${config.config_branch}",
+                                    CONFIG_BRANCHES: "${config.config_branch}",
                                     GIT_COMMIT: "${repoUrlAndRef.ref}",
                                     RPMINSPECT_PROFILE_NAME: "${config.profile_name}",
                                     DEBUG: "off"
