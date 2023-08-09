@@ -39,6 +39,24 @@
         "f39": {
             "previous_tag": "f39-updates",
             "default_release_string": "fc39",
+            "config_branch": "f39",
+            "profile_name": ""
+        },
+        "f40": {
+            "previous_tag": "f40-updates",
+            "default_release_string": "fc40",
+            "config_branch": "rawhide",
+            "profile_name": "rawhide"
+        },
+        "f41": {
+            "previous_tag": "f41-updates",
+            "default_release_string": "fc41",
+            "config_branch": "rawhide",
+            "profile_name": "rawhide"
+        },
+        "f42": {
+            "previous_tag": "f42-updates",
+            "default_release_string": "fc42",
             "config_branch": "rawhide",
             "profile_name": "rawhide"
         }
