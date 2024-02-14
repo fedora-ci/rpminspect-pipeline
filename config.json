@@ -45,8 +45,8 @@
         "f40": {
             "previous_tag": "f40-updates",
             "default_release_string": "fc40",
-            "config_branch": "rawhide",
-            "profile_name": "rawhide"
+            "config_branch": "f40",
+            "profile_name": ""
         },
         "f41": {
             "previous_tag": "f41-updates",
