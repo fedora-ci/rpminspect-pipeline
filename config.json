@@ -57,7 +57,7 @@
         "f42": {
             "previous_tag": "f42-updates",
             "default_release_string": "fc42",
-            "config_branch": "f41",
+            "config_branch": "f42",
             "profile_name": ""
         },
         "f43": {
