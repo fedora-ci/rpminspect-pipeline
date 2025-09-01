@@ -15,7 +15,9 @@ description: |
 provision:
   how: container
   # source: https://github.com/fedora-ci/rpminspect-image
-  image: quay.io/fedoraci/rpminspect:3b85258
+  # FIXME: (fixup) Do not require PREVIOUS_TAG or DEFAULT_RELEASE_STRING
+  #   Update the image reference after https://github.com/fedora-ci/rpminspect-runner/pull/147
+  image: quay.io/fedoraci/rpminspect:3fee61c
 
 prepare:
   how: shell
@@ -26,11 +28,12 @@ prepare:
         echo "TASK_ID not specified"
         exit 1
     fi
-    if [ -z "$PREVIOUS_TAG" ]; then
+    if [ -n "$@distro" ]; then
+        echo "DISTRO=$@distro" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+    elif [ -z "$PREVIOUS_TAG" ]; then
         echo "PREVIOUS_TAG not specified"
         exit 1
-    fi
-    if [ -z "$DEFAULT_RELEASE_STRING" ]; then
+    elif [ -z "$DEFAULT_RELEASE_STRING" ]; then
         echo "DEFAULT_RELEASE_STRING not specified"
         exit 1
     fi
