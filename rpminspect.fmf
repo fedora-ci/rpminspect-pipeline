@@ -1,8 +1,8 @@
 summary: TMT/FMF plan for running rpminspect.
 
 discover:
-    how: shell
-    tests:
+  how: shell
+  tests:
     - name: rpminspect
       framework: shell
       test: rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG
@@ -10,36 +10,36 @@ discover:
       duration: 720m
 
 description: |
-    Runs rpminspect tests in Fedora CI — https://github.com/fedora-ci/rpminspect-pipeline.
+  Runs rpminspect tests in Fedora CI — https://github.com/fedora-ci/rpminspect-pipeline.
 
 provision:
-    how: container
-    # source: https://github.com/fedora-ci/rpminspect-image
-    image: quay.io/fedoraci/rpminspect:3b85258
+  how: container
+  # source: https://github.com/fedora-ci/rpminspect-image
+  image: quay.io/fedoraci/rpminspect:3b85258
 
 prepare:
-    how: shell
-    script: |
-        if [ -z "$TASK_ID" ]; then
-            echo "TASK_ID not specified"
-            exit 1
-        fi
-        if [ -z "$PREVIOUS_TAG" ]; then
-            echo "PREVIOUS_TAG not specified"
-            exit 1
-        fi
-        if [ -z "$DEFAULT_RELEASE_STRING" ]; then
-            echo "DEFAULT_RELEASE_STRING not specified"
-            exit 1
-        fi
-        if [ -z "$REPOSITORY_URL" ]; then
-            echo "REPOSITORY_URL not specified"
-            exit 1
-        fi
-        if [ -z "$GIT_COMMIT" ]; then
-            echo "GIT_COMMIT not specified"
-            exit 1
-        fi
+  how: shell
+  script: |
+    if [ -z "$TASK_ID" ]; then
+        echo "TASK_ID not specified"
+        exit 1
+    fi
+    if [ -z "$PREVIOUS_TAG" ]; then
+        echo "PREVIOUS_TAG not specified"
+        exit 1
+    fi
+    if [ -z "$DEFAULT_RELEASE_STRING" ]; then
+        echo "DEFAULT_RELEASE_STRING not specified"
+        exit 1
+    fi
+    if [ -z "$REPOSITORY_URL" ]; then
+        echo "REPOSITORY_URL not specified"
+        exit 1
+    fi
+    if [ -z "$GIT_COMMIT" ]; then
+        echo "GIT_COMMIT not specified"
+        exit 1
+    fi
 
 execute:
-    how: tmt
+  how: tmt
