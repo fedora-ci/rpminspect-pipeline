@@ -20,7 +20,9 @@ provision:
 prepare:
   how: shell
   script: |
-    if [ -z "$TASK_ID" ]; then
+    if [ -n "$KOJI_TASK_ID" ]; then
+        echo "TASK_ID=$KOJI_TASK_ID" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+    elif [ -z "$TASK_ID" ]; then
         echo "TASK_ID not specified"
         exit 1
     fi
