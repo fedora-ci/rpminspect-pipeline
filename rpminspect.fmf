@@ -14,10 +14,8 @@ description: |
 
 provision:
   how: container
-  # source: https://github.com/fedora-ci/rpminspect-image
-  # FIXME: (fixup) Do not require PREVIOUS_TAG or DEFAULT_RELEASE_STRING
-  #   Update the image reference after https://github.com/fedora-ci/rpminspect-runner/pull/147
-  image: quay.io/fedoraci/rpminspect:3fee61c
+  # source: https://github.com/fedora-ci/rpminspect-runner
+  image: quay.io/fedoraci/rpminspect:a57565c
 
 prepare:
   how: shell
