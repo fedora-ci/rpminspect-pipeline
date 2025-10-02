@@ -28,7 +28,7 @@ prepare:
     fi
     # Cannot do just `-n` check because tmt does not expand unknown context
     # to null strings. Work around this by assuming $@ will evaluate to null.
-    if [ -n "$@distro" && "$@distro" != "distro" ]; then
+    if [[ -n "$@distro" && "$@distro" != "distro" ]]; then
         echo "DISTRO=$@distro" >> "$TMT_PLAN_ENVIRONMENT_FILE"
     elif [ -z "$PREVIOUS_TAG" ]; then
         echo "PREVIOUS_TAG not specified"
