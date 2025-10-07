@@ -1,8 +1,8 @@
 summary: TMT/FMF plan for running rpminspect.
 
 discover:
-    how: shell
-    tests:
+  how: shell
+  tests:
     - name: rpminspect
       framework: shell
       test: rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG
@@ -10,36 +10,33 @@ discover:
       duration: 720m
 
 description: |
-    Runs rpminspect tests in Fedora CI — https://github.com/fedora-ci/rpminspect-pipeline.
+  Runs rpminspect tests in Fedora CI — https://github.com/fedora-ci/rpminspect-pipeline.
 
 provision:
-    how: container
-    # source: https://github.com/fedora-ci/rpminspect-image
-    image: quay.io/fedoraci/rpminspect:3b85258
+  how: container
+  # source: https://github.com/fedora-ci/rpminspect-runner
+  image: quay.io/fedoraci/rpminspect:a57565c
 
 prepare:
-    how: shell
-    script: |
-        if [ -z "$TASK_ID" ]; then
-            echo "TASK_ID not specified"
-            exit 1
-        fi
-        if [ -z "$PREVIOUS_TAG" ]; then
-            echo "PREVIOUS_TAG not specified"
-            exit 1
-        fi
-        if [ -z "$DEFAULT_RELEASE_STRING" ]; then
-            echo "DEFAULT_RELEASE_STRING not specified"
-            exit 1
-        fi
-        if [ -z "$REPOSITORY_URL" ]; then
-            echo "REPOSITORY_URL not specified"
-            exit 1
-        fi
-        if [ -z "$GIT_COMMIT" ]; then
-            echo "GIT_COMMIT not specified"
-            exit 1
-        fi
+  how: shell
+  script: |
+    if [ -n "$KOJI_TASK_ID" ]; then
+        echo "TASK_ID=$KOJI_TASK_ID" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+    elif [ -z "$TASK_ID" ]; then
+        echo "TASK_ID not specified"
+        exit 1
+    fi
+    # Cannot do just `-n` check because tmt does not expand unknown context
+    # to null strings. Work around this by assuming $@ will evaluate to null.
+    if [[ -n "$@distro" && "$@distro" != "distro" ]]; then
+        echo "DISTRO=$@distro" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+    elif [ -z "$PREVIOUS_TAG" ]; then
+        echo "PREVIOUS_TAG not specified"
+        exit 1
+    elif [ -z "$DEFAULT_RELEASE_STRING" ]; then
+        echo "DEFAULT_RELEASE_STRING not specified"
+        exit 1
+    fi
 
 execute:
-    how: tmt
+  how: tmt

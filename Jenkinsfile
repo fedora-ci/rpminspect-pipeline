@@ -68,7 +68,6 @@ pipeline {
                         abort('ARTIFACT_ID is missing')
                     }
 
-                    repoUrlAndRef = getRepoUrlAndRefFromTaskId(getIdFromArtifactId(artifactId: artifactId))
                     pipelineRepoUrlAndRef = [url: "${getGitUrl()}", ref: "${getGitRef()}"]
                 }
                 sendMessage(type: 'queued', artifactId: artifactId, pipelineMetadata: pipelineMetadata, dryRun: isPullRequest())
@@ -93,9 +92,7 @@ pipeline {
                                     PREVIOUS_TAG: "${config.previous_tag}",
                                     TASK_ID: "${getIdFromArtifactId(artifactId: artifactId)}",
                                     DEFAULT_RELEASE_STRING: "${config.default_release_string}",
-                                    REPOSITORY_URL: "${repoUrlAndRef.url}",
                                     CONFIG_BRANCHES: "${config.config_branch}",
-                                    GIT_COMMIT: "${repoUrlAndRef.ref}",
                                     RPMINSPECT_PROFILE_NAME: "${config.profile_name}",
                                     DEBUG: "off"
                                 ]
