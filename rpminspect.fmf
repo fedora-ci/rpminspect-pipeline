@@ -30,6 +30,9 @@ prepare:
     # to null strings. Work around this by assuming $@ will evaluate to null.
     if [[ -n "$@distro" && "$@distro" != "distro" ]]; then
         echo "DISTRO=$@distro" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+        # Most likely we do not pass CONFIG_BRANCHES in this case, make sure we don't fail
+        # and use the commit instead
+        echo "RPMINSPECT_YAML_LOOKUP_STRATEGY=commit" >> "$TMT_PLAN_ENVIRONMENT_FILE"
     elif [ -z "$PREVIOUS_TAG" ]; then
         echo "PREVIOUS_TAG not specified"
         exit 1
