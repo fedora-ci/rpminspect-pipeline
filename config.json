@@ -1,5 +1,11 @@
 {
     "profiles": {
+        "eln": {
+            "previous_tag": "eln-updates",
+            "default_release_string": "eln154",
+            "config_branch": "eln,rawhide",
+            "profile_name": "rawhide"
+        },
         "f33": {
             "previous_tag": "f33-updates",
             "default_release_string": "fc33",
