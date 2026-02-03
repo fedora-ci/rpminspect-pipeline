@@ -69,6 +69,12 @@
         "f44": {
             "previous_tag": "f44-updates",
             "default_release_string": "fc44",
+            "config_branch": "f44",
+            "profile_name": ""
+        },
+        "f45": {
+            "previous_tag": "f45-updates",
+            "default_release_string": "fc45",
             "config_branch": "rawhide",
             "profile_name": "rawhide"
         }
