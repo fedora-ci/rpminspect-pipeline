@@ -15,7 +15,7 @@ description: |
 provision:
   how: container
   # source: https://github.com/fedora-ci/rpminspect-runner
-  image: quay.io/fedoraci/rpminspect:a57565c
+  image: quay.io/fedoraci/rpminspect:7ec81c7
 
 prepare:
   how: shell
@@ -28,8 +28,8 @@ prepare:
     fi
     # Cannot do just `-n` check because tmt does not expand unknown context
     # to null strings. Work around this by assuming $@ will evaluate to null.
-    if [[ -n "$@distro" && "$@distro" != "distro" ]]; then
-        echo "DISTRO=$@distro" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+    if [[ -n "$@{dist-git-branch}" && "$@{dist-git-branch}" != "{dist-git-branch}" ]]; then
+        echo "DIST_GIT_BRANCH=$@{dist-git-branch}" >> "$TMT_PLAN_ENVIRONMENT_FILE"
         # Most likely we do not pass CONFIG_BRANCHES in this case, make sure we don't fail
         # and use the commit instead
         echo "RPMINSPECT_YAML_LOOKUP_STRATEGY=commit" >> "$TMT_PLAN_ENVIRONMENT_FILE"
