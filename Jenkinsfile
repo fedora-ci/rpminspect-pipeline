@@ -26,6 +26,7 @@ def repoUrlAndRef
 def pipelineRepoUrlAndRef
 def hook
 def runUrl
+def requestPayload
 
 
 pipeline {
@@ -45,6 +46,7 @@ pipeline {
     parameters {
         string(name: 'ARTIFACT_ID', defaultValue: '', trim: true, description: '"koji-build:&lt;taskId&gt;" for Koji builds; Example: koji-build:46436038')
         string(name: 'TEST_PROFILE', defaultValue: env.DEFAULT_TEST_PROFILE, trim: true, description: "A name of the test profile to use; Example: ${env.DEFAULT_TEST_PROFILE}")
+        string(name: 'DIST_GIT_BRANCH', defaultValue: '', trim: true, description: "Dist-git branch associated with the provided ARTIFACT_ID")
     }
 
     environment {
@@ -80,25 +82,48 @@ pipeline {
             }
             steps {
                 script {
-                    def requestPayload = [
-                        api_key: "${env.TESTING_FARM_API_KEY}",
-                        test: [
-                            fmf: pipelineRepoUrlAndRef
-                        ],
-                        environments: [
-                            [
-                                arch: "x86_64",
-                                variables: [
-                                    PREVIOUS_TAG: "${config.previous_tag}",
-                                    TASK_ID: "${getIdFromArtifactId(artifactId: artifactId)}",
-                                    DEFAULT_RELEASE_STRING: "${config.default_release_string}",
-                                    CONFIG_BRANCHES: "${config.config_branch}",
-                                    RPMINSPECT_PROFILE_NAME: "${config.profile_name}",
-                                    DEBUG: "off"
+                    if (params.DIST_GIT_BRANCH) {
+                        requestPayload = [
+                            api_key: "${env.TESTING_FARM_API_KEY}",
+                            test: [
+                                tmt: pipelineRepoUrlAndRef,
+                            ],
+                            environments: [
+                                [
+                                    arch: "x86_64",
+                                    variables: [
+                                        KOJI_TASK_ID: "${getIdFromArtifactId(artifactId: artifactId)}",
+                                    ],
+                                    tmt: [
+                                        context: [
+                                            "dist-git-branch": params.DIST_GIT_BRANCH,
+                                        ]
+                                    ]
+                                ]
+                            ],
+                        ]
+                    } else {
+                        // TODO: Remove after trigger job PR is successful
+                        requestPayload = [
+                            api_key: "${env.TESTING_FARM_API_KEY}",
+                            test: [
+                                fmf: pipelineRepoUrlAndRef
+                            ],
+                            environments: [
+                                [
+                                    arch: "x86_64",
+                                    variables: [
+                                        PREVIOUS_TAG: "${config.previous_tag}",
+                                        TASK_ID: "${getIdFromArtifactId(artifactId: artifactId)}",
+                                        DEFAULT_RELEASE_STRING: "${config.default_release_string}",
+                                        CONFIG_BRANCHES: "${config.config_branch}",
+                                        RPMINSPECT_PROFILE_NAME: "${config.profile_name}",
+                                        DEBUG: "off"
+                                    ]
                                 ]
                             ]
                         ]
-                    ]
+                    }
                     hook = registerWebhook()
                     requestPayload['notification'] = ['webhook': [url: hook.getURL()]]
 
