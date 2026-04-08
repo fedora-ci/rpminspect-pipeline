@@ -5,7 +5,7 @@ discover:
   tests:
     - name: rpminspect
       framework: shell
-      test: rpminspect_runner.sh $TASK_ID $PREVIOUS_TAG
+      test: rpminspect_runner.sh $TASK_ID
       result: custom
       duration: 720m
 
@@ -20,26 +20,9 @@ provision:
 prepare:
   how: shell
   script: |
-    if [ -n "$KOJI_TASK_ID" ]; then
-        echo "TASK_ID=$KOJI_TASK_ID" >> "$TMT_PLAN_ENVIRONMENT_FILE"
-    elif [ -z "$TASK_ID" ]; then
-        echo "TASK_ID not specified"
-        exit 1
-    fi
-    # Cannot do just `-n` check because tmt does not expand unknown context
-    # to null strings. Work around this by assuming $@ will evaluate to null.
-    if [[ -n "$@{dist-git-branch}" && "$@{dist-git-branch}" != "{dist-git-branch}" ]]; then
-        echo "DIST_GIT_BRANCH=$@{dist-git-branch}" >> "$TMT_PLAN_ENVIRONMENT_FILE"
-        # Most likely we do not pass CONFIG_BRANCHES in this case, make sure we don't fail
-        # and use the commit instead
-        echo "RPMINSPECT_YAML_LOOKUP_STRATEGY=commit" >> "$TMT_PLAN_ENVIRONMENT_FILE"
-    elif [ -z "$PREVIOUS_TAG" ]; then
-        echo "PREVIOUS_TAG not specified"
-        exit 1
-    elif [ -z "$DEFAULT_RELEASE_STRING" ]; then
-        echo "DEFAULT_RELEASE_STRING not specified"
-        exit 1
-    fi
+    echo "TASK_ID=$KOJI_TASK_ID" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+    echo "DIST_GIT_BRANCH=$@{dist-git-branch}" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+    echo "RPMINSPECT_YAML_LOOKUP_STRATEGY=commit" >> "$TMT_PLAN_ENVIRONMENT_FILE"
 
 execute:
   how: tmt
