@@ -18,11 +18,21 @@ provision:
   image: quay.io/fedoraci/rpminspect:00ae311
 
 prepare:
-  how: shell
-  script: |
-    echo "TASK_ID=$KOJI_TASK_ID" >> "$TMT_PLAN_ENVIRONMENT_FILE"
-    echo "DIST_GIT_BRANCH=$@{dist-git-branch}" >> "$TMT_PLAN_ENVIRONMENT_FILE"
-    echo "RPMINSPECT_YAML_LOOKUP_STRATEGY=commit" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+  - how: install
+    copr: dcantrell/rpminspect
+  - how: install
+    copr: "@osci/fedora-license-data"
+  - how: shell
+    script: |
+      # If needed change this to a specific pinned NVR from
+      # https://copr.fedorainfracloud.org/coprs/dcantrell/rpminspect/builds/
+      # https://copr.fedorainfracloud.org/coprs/g/osci/fedora-license-data/builds/
+      dnf upgrade -y rpminspect fedora-license-data
+  - how: shell
+    script: |
+      echo "TASK_ID=$KOJI_TASK_ID" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+      echo "DIST_GIT_BRANCH=$@{dist-git-branch}" >> "$TMT_PLAN_ENVIRONMENT_FILE"
+      echo "RPMINSPECT_YAML_LOOKUP_STRATEGY=commit" >> "$TMT_PLAN_ENVIRONMENT_FILE"
 
 execute:
   how: tmt
