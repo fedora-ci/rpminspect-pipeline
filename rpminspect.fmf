@@ -19,15 +19,15 @@ provision:
 
 prepare:
   - how: install
-    copr: dcantrell/rpminspect
+    copr: "@rpminspect/latest"
   - how: install
     copr: "@osci/fedora-license-data"
   - how: shell
     script: |
       # If needed change this to a specific pinned NVR from
-      # https://copr.fedorainfracloud.org/coprs/dcantrell/rpminspect/builds/
+      # https://copr.fedorainfracloud.org/coprs/g/rpminspect/latest/builds/
       # https://copr.fedorainfracloud.org/coprs/g/osci/fedora-license-data/builds/
-      dnf upgrade -y rpminspect fedora-license-data
+      dnf upgrade -y rpminspect rpminspect-data-fedora fedora-license-data
   - how: shell
     script: |
       echo "TASK_ID=$KOJI_TASK_ID" >> "$TMT_PLAN_ENVIRONMENT_FILE"
