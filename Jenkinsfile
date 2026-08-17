@@ -46,6 +46,7 @@ pipeline {
     parameters {
         string(name: 'ARTIFACT_ID', defaultValue: '', trim: true, description: '"koji-build:&lt;taskId&gt;" for Koji builds; Example: koji-build:46436038')
         string(name: 'DIST_GIT_BRANCH', defaultValue: '', trim: true, description: "Dist-git branch associated with the provided ARTIFACT_ID")
+        booleanParam(name: 'MULTIHOST_PIPELINE', defaultValue: false, description: 'Use the new testing-farm multihost-pipeline')
     }
 
     environment {
@@ -102,6 +103,15 @@ pipeline {
                             ]
                         ],
                     ]
+                    if (params.MULTIHOST_PIPELINE) {
+                        requestPayload['settings'] = [
+                            pipeline: [
+                                type: "tmt-multihost"
+                            ]
+                        ]
+                        requestPayload['environments'][0]["tmt"]["policy"] = "fedora-ci"
+                    }
+
                     hook = registerWebhook()
                     requestPayload['notification'] = ['webhook': [url: hook.getURL()]]
 
